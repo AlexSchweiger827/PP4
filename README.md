@@ -116,9 +116,9 @@ ssh-keygen -t ed25519 -C "Alexander.schweiger@stud.thga.de"
 
 # 2) The file paths of the generated keys
 
-/home/lex-alex/.ssh/id_ed25519/Key
+/home/lex-alex/.ssh/id_ed25519
 
-/home/lex-alex/.ssh/id_ed25519/Key.pub
+/home/lex-alex/.ssh/id_ed25519.pub
 
 # 3) Your written explanation (3–5 sentences) of the signature process
 
@@ -126,7 +126,7 @@ ssh-keygen -t ed25519 -C "Alexander.schweiger@stud.thga.de"
 
 The private key encrypt the message. 
 
-The public key decrypts the signature that was made by the private key. It compares the hash with its own computed hash.
+The public key decrypts the signature that was made by the private key. It compares the hash with its own computed hash and verifys the authencity of the signature.
 
 Ed25519 is preferred because, it is fast in making signatures and in verifying the signatures. It also has a high safety standard. 
 ```
@@ -168,7 +168,26 @@ Ed25519 is preferred because, it is fast in making signatures and in verifying t
 
 ```text
 # 1) The full contents of your ~/.ssh/config
+
+Host my-remote
+       HostName 172.31.1.161
+       User lex-alex
+       IdentityFile ~/.ssh/id_ed25519
+
+
+Host backup-server
+               HostName 172.31.1.161
+               User backup
+               Port 2222
+               IdentityFile ~/.ssh/id_ed25519_backup
+
 # 2) A short explanation (3–4 sentences) of how the config simplifies connections
+
+
+By creating a remote server in this way, you do not need to write a long command like "ssh ubuntu@172.31.1.161".
+You can join the remote server by writing for example "ssh my-remote".
+It safes time and you do not need to remember the Hostnames like "172.31.1.161".
+
 ```
 
 ---
