@@ -58,7 +58,7 @@ In this exercise you will:
 # 1) The exact ssh command you ran
 
 command:
-ssh ubuntu@172.31.1.161
+ubuntu@ubuntu:~$ ssh ubuntu@172.31.1.161
 
 output:
 The authenticity of host '172.31.1.161 (172.31.1.161)' can't be established.
@@ -66,11 +66,20 @@ ED25519 key fingerprint is SHA256:HfPJ+11rq5bhNzyXhIgM7Kkni6zF+8MvIaqlNSXXyvE
 this key is not known by any othe names.
 Are you sure you want to continue connecting (yes/no [fingerprint])?
 
+command:
+ubuntu@DESKTOP-6IB5N3D:~$ exit
+
+output:
+logout
+Connection to 172.31.1.161 closed.
+
 # 2) A detailed, step-by-step explanation of what happened at each stage
 
 For the fist ssh login you will be asked if you want to continue the connection.
 By writing "yes" you can type your specific password to make the connection.
 The password was made by the host.
+After entering the password you get connected to the host in my case the name of the host is DESKTOP-6IB5N3D.
+by writing the command "exit" you will close the connection with the host.
 ```
 
 
