@@ -56,8 +56,20 @@ In this exercise you will:
 
 ```bash
 # 1) The exact ssh command you ran
+
+
+ssh ubuntu@172.31.1.161
+
+The authenticity of host '172.31.1.161 (172.31.1.161)' can't be established.
+ED25519 key fingerprint is SHA256:HfPJ+11rq5bhNzyXhIgM7Kkni6zF+8MvIaqlNSXXyvE
+this key is not known by any othe names.
+Are you sure you want to continue connecting (yes/no [fingerprint])?
+
 # 2) A detailed, step-by-step explanation of what happened at each stage
 ```
+For the fist ssh login you will be aksed if you want to continue the connection.
+By writing "yes" you can type your specific password to make the connection.
+The password was made by the host.
 
 ---
 
