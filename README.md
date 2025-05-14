@@ -199,12 +199,12 @@ It safes time and you do not need to remember the Hostnames like "172.31.1.161".
 1. **Local → Remote**:
 
    ```bash
-   scp /path/to/localfile.txt youruser@remotehost:~/destination/
+   scp test.txt ubuntu@172.31.1.161:~/home
    ```
 2. **Remote → Local**:
 
    ```bash
-   scp youruser@remotehost:~/remotefile.log ./local_destination/
+   scp ubuntu@172.31.1.161:~/test_remote.txt ./home
    ```
 3. **Remote → Remote** (between two directories on the same remote host):
 
@@ -224,6 +224,19 @@ It safes time and you do not need to remember the Hostnames like "172.31.1.161".
 
 ```bash
 # 1) Each scp command you ran
+
+1. **Local → Remote**:
+
+   ```bash
+   scp test.txt ubuntu@172.31.1.161:~/home
+   ```
+
+2. **Remote → Local**:
+
+   ```bash
+   scp ubuntu@172.31.1.161:~/test_remote.txt ./home
+   ```
+   
 # 2) Any flags or options used
 # 3) A brief explanation (2–3 sentences) of scp’s mechanism
 ```
