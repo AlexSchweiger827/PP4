@@ -78,7 +78,9 @@ Connection to 172.31.1.161 closed.
 For the fist ssh login you will be asked if you want to continue the connection.
 By writing "yes" you can type your specific password to make the connection.
 The password was made by the host.
-After entering the password you get connected to the host in my case the name of the host is DESKTOP-6IB5N3D.
+
+After entering the password you get connected to the host in my case the name of the host is DESKTOP-6IB5N3D on the port 22.
+
 by writing the command "exit" you will close the connection with the host.
 ```
 
