@@ -75,7 +75,7 @@ Connection to 172.31.1.161 closed.
 
 # 2) A detailed, step-by-step explanation of what happened at each stage
 
-For the fist ssh login you will be asked if you want to continue the connection.
+For the first ssh login you will be asked if you want to continue the connection.
 By writing "yes" you can type your specific password to make the connection.
 The password was made by the host.
 
