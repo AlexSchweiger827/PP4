@@ -109,8 +109,24 @@ by writing the command "exit" you will close the connection with the host.
 
 ```bash
 # 1) The ssh-keygen command you ran
+
+ssh-keygen -t ed25519 -C "Alexander.schweiger@stud.thga.de"
+
 # 2) The file paths of the generated keys
+
+/home/lex-alex/.ssh/id_ed25519/Key
+
+/home/lex-alex/.ssh/id_ed25519/Key.pub
+
 # 3) Your written explanation (3–5 sentences) of the signature process
+
+
+
+The private key encrypt the message. 
+
+The public key decrypts the signature that was made by the private key. It compares the hash with its own computed hash.
+
+Ed25519 is preferred because, it is fast in making signatures and in verifying the signatures. It also has a high safety standard. 
 ```
 
 ---
