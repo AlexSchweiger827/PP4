@@ -60,11 +60,7 @@ In this exercise you will:
 command:
 ubuntu@ubuntu:~$ ssh ubuntu@172.31.1.161
 
-output:
-The authenticity of host '172.31.1.161 (172.31.1.161)' can't be established.
-ED25519 key fingerprint is SHA256:HfPJ+11rq5bhNzyXhIgM7Kkni6zF+8MvIaqlNSXXyvE
-this key is not known by any othe names.
-Are you sure you want to continue connecting (yes/no [fingerprint])?
+
 
 command:
 ubuntu@DESKTOP-6IB5N3D:~$ exit
@@ -75,11 +71,21 @@ Connection to 172.31.1.161 closed.
 
 # 2) A detailed, step-by-step explanation of what happened at each stage
 
-For the first ssh login you will be asked if you want to continue the connection.
-By writing "yes" you can type your specific password to make the connection.
-The password was made by the host.
+1.TCP connection
+First I wrote the command "ssh ubuntu@172.31.1.161".
+With this command I made an ssh connection to the host on port 22
 
-After entering the password you get connected to the host in my case the name of the host is DESKTOP-6IB5N3D on the port 22.
+2.SSH prtocol handshake
+The client and the server exchange their supported SSH protocol versions to ensure that the connection is compatible.
+
+3.Authentication
+I had to authenticate the client by typing the password that the server created for the client.
+An other method would be a public key authentication. In that case the server would send a public key to the client.
+The client can then authenticate himself through the public key and without a password.
+
+4. Shell allocation
+After the Authentication was successful, the server made a shell for interactions between client and server.
+In my case I was logged in to the remote machine. My prompt changed from "ubuntu@ubuntu" to "ubuntu@DESKTOB-6IB5N3D".
 
 by writing the command "exit" you will close the connection with the host.
 ```
@@ -171,15 +177,21 @@ Ed25519 is preferred because, it is fast in making signatures and in verifying t
 
 Host my-remote
        HostName 172.31.1.161
-       User lex-alex
+       User ubuntu
        IdentityFile ~/.ssh/id_ed25519
 
 
 Host backup-server
                HostName 172.31.1.161
-               User backup
+               User ubuntu
                Port 2222
                IdentityFile ~/.ssh/id_ed25519_backup
+
+Host is the alias for the server. The client also can login through this name.
+
+The HostName is the real name or rather the real address of the server.
+
+By changing the server adress to an alias the command for an ssh connection is very simple und terminates writing mistakes.
 
 # 2) A short explanation (3–4 sentences) of how the config simplifies connections
 
@@ -290,3 +302,5 @@ It safes time and you do not need to remember the Hostnames like "172.31.1.161".
 ---
 
 **Remember:** Stop working after **90 minutes** and record where you stopped.
+
+I did task 1-3 and started with task 4. 
