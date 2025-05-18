@@ -64,7 +64,7 @@ ubuntu@ubuntu:~$ ssh ubuntu@172.31.1.161
 
 command:
 ubuntu@DESKTOP-6IB5N3D:~$ exit
-
+g
 output:
 logout
 Connection to 172.31.1.161 closed.
@@ -75,17 +75,94 @@ Connection to 172.31.1.161 closed.
 First I wrote the command "ssh ubuntu@172.31.1.161".
 With this command I made an ssh connection to the host on port 22
 
+Output:
+debug1: /etc/ssh/ssh_config line 21: Applying options for *
+debug1: Connecting to 172.31.1.161 [172.31.1.161] port 22.
+debug1: Connection established.
+
+
 2.SSH prtocol handshake
 The client and the server exchange their supported SSH protocol versions to ensure that the connection is compatible.
+
+Output:
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: algorithm: sntrup761x25519-sha512@openssh.com
+debug1: kex: host key algorithm: ssh-ed25519
+debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: SSH2_MSG_KEX_ECDH_REPLY received
+debug1: Server host key: ssh-ed25519 SHA256:HfPJ+11rq5bhNzyXhIgM7Kkni6zF+8MvIaqlNSXXyvE
+debug1: load_hostkeys: fopen /home/ubuntu/.ssh/known_hosts2: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug1: Host '172.31.1.161' is known and matches the ED25519 host key.
+debug1: Found key in /home/ubuntu/.ssh/known_hosts:1
+debug1: ssh_packet_send2_wrapped: resetting send seqnr 3
+debug1: rekey out after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: Sending SSH2_MSG_EXT_INFO
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: ssh_packet_read_poll2: resetting read seqnr 3
+debug1: SSH2_MSG_NEWKEYS received
+debug1: rekey in after 134217728 blocks
+debug1: SSH2_MSG_EXT_INFO received
+debug1: kex_ext_info_client_parse: server-sig-algs=<ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256>
+debug1: kex_ext_info_check_ver: publickey-hostbound@openssh.com=<0>
+debug1: kex_ext_info_check_ver: ping@openssh.com=<0>
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: SSH2_MSG_EXT_INFO received
+debug1: kex_ext_info_client_parse: server-sig-algs=<ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256>
+debug1: Authentications that can continue: publickey,password
 
 3.Authentication
 I had to authenticate the client by typing the password that the server created for the client.
 An other method would be a public key authentication. In that case the server would send a public key to the client.
 The client can then authenticate himself through the public key and without a password.
 
+Output:
+
+debug1: Next authentication method: publickey
+debug1: get_agent_identities: bound agent to hostkey
+debug1: get_agent_identities: ssh_fetch_identitylist: agent contains no identities
+debug1: Will attempt key: /home/ubuntu/.ssh/id_rsa
+debug1: Will attempt key: /home/ubuntu/.ssh/id_ecdsa
+debug1: Will attempt key: /home/ubuntu/.ssh/id_ecdsa_sk
+debug1: Will attempt key: /home/ubuntu/.ssh/id_ed25519
+debug1: Will attempt key: /home/ubuntu/.ssh/id_ed25519_sk
+debug1: Will attempt key: /home/ubuntu/.ssh/id_xmss
+debug1: Trying private key: /home/ubuntu/.ssh/id_rsa
+debug1: Trying private key: /home/ubuntu/.ssh/id_ecdsa
+debug1: Trying private key: /home/ubuntu/.ssh/id_ecdsa_sk
+debug1: Trying private key: /home/ubuntu/.ssh/id_ed25519
+debug1: Trying private key: /home/ubuntu/.ssh/id_ed25519_sk
+debug1: Trying private key: /home/ubuntu/.ssh/id_xmss
+debug1: Next authentication method: password
+ubuntu@172.31.1.161's password:
+Authenticated to 172.31.1.161 ([172.31.1.161]:22) using "password".
+debug1: channel 0: new session [client-session] (inactive timeout: 0)
+debug1: Requesting no-more-sessions@openssh.com
+debug1: Entering interactive session.
+
 4. Shell allocation
 After the Authentication was successful, the server made a shell for interactions between client and server.
 In my case I was logged in to the remote machine. My prompt changed from "ubuntu@ubuntu" to "ubuntu@DESKTOB-6IB5N3D".
+
+Output:
+debug1: pledge: filesystem
+debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+debug1: client_input_hostkeys: searching /home/ubuntu/.ssh/known_hosts for 172.31.1.161 / (none)
+debug1: client_input_hostkeys: searching /home/ubuntu/.ssh/known_hosts2 for 172.31.1.161 / (none)
+debug1: client_input_hostkeys: hostkeys file /home/ubuntu/.ssh/known_hosts2 does not exist
+debug1: Sending environment.
+debug1: channel 0: setting env LANG = "C.UTF-8"
+Learned new hostkey: RSA SHA256:6IqZJiDt91bbEf9YXC2p17RS7RL1i7rRMvoVXiGe46M
+Learned new hostkey: ECDSA SHA256:0wUEgjOaLqoqlPZxf8KnAm4EEN5E8LytY3wgxfzHlFo
+Adding new key for 172.31.1.161 to /home/ubuntu/.ssh/known_hosts: ssh-rsa SHA256:6IqZJiDt91bbEf9YXC2p17RS7RL1i7rRMvoVXiGe46M
+Adding new key for 172.31.1.161 to /home/ubuntu/.ssh/known_hosts: ecdsa-sha2-nistp256 SHA256:0wUEgjOaLqoqlPZxf8KnAm4EEN5E8LytY3wgxfzHlFo
+debug1: update_known_hosts: known hosts file /home/ubuntu/.ssh/known_hosts2 does not exist
+debug1: pledge: fork
 
 by writing the command "exit" you will close the connection with the host.
 ```
@@ -251,6 +328,8 @@ It safes time and you do not need to remember the Hostnames like "172.31.1.161".
    
 # 2) Any flags or options used
 # 3) A brief explanation (2–3 sentences) of scp’s mechanism
+
+SCP (Secure Copy Protocol) is a secure file transport protocol between hosts based on the Secure Shell (SSH). It ensures that only authorized users can access and transfer. The SSH encryption protects the data during transit to prevent that unauthorized users can access and temper these files.
 ```
 
 ---
